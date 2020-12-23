@@ -1,18 +1,28 @@
 <template>
-    <div class="container">
-        <span>Search</span>
-        <input type="text" class="search-input"/>
-    </div>
+  <div class="container">
+    <input type="text" class="search-input" v-model="searchTerm" />
+    <button @click="$emit('search-images', searchTerm)">Search</button>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      searchTerm: "",
+    };
+  }
+};
+</script>
 
 <style scoped>
 .container {
-    display: flex;
-    padding: 20px;
+  display: flex;
+  padding: 20px;
 }
 
 .search-input {
-    flex: 1;
-    margin-left: 10px;
+  flex: 1;
+  margin-right: 10px;
 }
 </style>
