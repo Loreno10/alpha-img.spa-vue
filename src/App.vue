@@ -2,12 +2,14 @@
   <div class="app-container">
     <Search @search-images="searchRequested" />
     <Grid :images="images" />
+    <Pagination v-if="images.length > 0" :disablePrevious="searchIndex === 1" @previous-clicked="searchPrevious" @next-clicked="searchNext"/>
   </div>
 </template>
 
 <script>
 import Search from "./components/Search.vue";
 import Grid from "./components/Grid.vue";
+import Pagination from "./components/Pagination.vue";
 import { getImages } from "./services/google-images-service.js";
 
 export default {
@@ -15,20 +17,34 @@ export default {
   data() {
     return {
       images: [],
+      searchTerm: "",
+      searchIndex: 1
     };
   },
   methods: {
     async searchRequested(searchTerm) {
-      const results = await Promise.all([getImages(searchTerm), getImages(searchTerm, 11)])
-      console.log(results)
-      this.images = [...results[0].images, ...results[1].images]
+      if (searchTerm !== undefined) {
+        this.searchTerm = searchTerm;
+      }
+      this.images = await getImages(this.searchTerm, this.searchIndex)
     },
+    async searchPrevious() {
+      if (this.searchIndex > 0) {
+        this.searchIndex--;
+      }
+      await this.searchRequested();
+    },
+    async searchNext() {
+      this.searchIndex++;
+      await this.searchRequested();
+    }
   },
   components: {
     Search,
     Grid,
-  },
-};
+    Pagination
+  }
+}
 </script>
 
 <style scoped>

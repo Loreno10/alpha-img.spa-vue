@@ -3,8 +3,21 @@ import axios from 'axios'
 const apiKey = "AIzaSyACxe7LArB62_zVcyCXZrEt9xEdbx_LbfM"
 const cx = "6fa4d5a5c965291d0"
 
-async function getImages(searchTerm, startIndex = 1) {
-  const url = `https://customsearch.googleapis.com/customsearch/v1?cx=${cx}&q=${searchTerm}&key=${apiKey}&start=${startIndex}&filter=1&imgColorType=trans&searchType=image`
+async function getImages(searchTerm, searchIndex = 1) {
+  const commonUrl = `https://customsearch.googleapis.com/customsearch/v1?cx=${cx}&q=${searchTerm}&key=${apiKey}&filter=1&imgColorType=trans&searchType=image`
+  const apiIndexes = getGoogleApiIndexes(searchIndex)
+  const url1 = `${commonUrl}&start=${apiIndexes[0]}`
+  const url2 = `${commonUrl}&start=${apiIndexes[1]}`
+
+  const results = await Promise.all([getData(url1), getData(url2)])
+  return results.flat()
+}
+
+function getGoogleApiIndexes(searchIndex) {
+  return [(searchIndex - 1) * 20 + 1, (searchIndex - 1) * 20 + 11]
+}
+
+async function getData(url) {
   const result = await axios.get(url)
 
   if (result.status != 200) {
@@ -27,12 +40,12 @@ function transformResult(result) {
     })
   });
 
-  const returnObj = {
-    images,
-    nextStartIndex: result.queries.nextPage[0].startIndex
-  }
+  // const returnObj = {
+  //   images,
+  //   nextStartIndex: result.queries.nextPage[0].startIndex
+  // }
 
-  return returnObj;
+  return images;
 }
 
 export { getImages };
