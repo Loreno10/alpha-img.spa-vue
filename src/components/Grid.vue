@@ -17,10 +17,12 @@ export default {
 
 <style scoped>
 .container {
+  height: 100%;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 20px 20px;
+  grid-template-rows: repeat(5, 20%);
+  /* gap: 20px; */
   justify-items: center;
 }
 </style>

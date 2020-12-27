@@ -1,8 +1,13 @@
 <template>
   <div class="app-container">
     <Search @search-images="searchRequested" />
-    <Grid :images="images" />
-    <Pagination v-if="images.length > 0" :disablePrevious="searchIndex === 1" @previous-clicked="searchPrevious" @next-clicked="searchNext"/>
+    <div><Grid :images="images" /></div>
+    <Pagination
+      v-if="images.length > 0"
+      :disablePrevious="searchIndex === 1"
+      @previous-clicked="searchPrevious"
+      @next-clicked="searchNext"
+    />
   </div>
 </template>
 
@@ -18,7 +23,7 @@ export default {
     return {
       images: [],
       searchTerm: "",
-      searchIndex: 1
+      searchIndex: 1,
     };
   },
   methods: {
@@ -27,29 +32,36 @@ export default {
         this.searchTerm = searchTerm;
       }
       this.images = await getImages(this.searchTerm, this.searchIndex)
+      console.log(this.images)
     },
     async searchPrevious() {
       if (this.searchIndex > 0) {
-        this.searchIndex--;
+        this.searchIndex--
       }
-      await this.searchRequested();
+      await this.searchRequested()
     },
     async searchNext() {
-      this.searchIndex++;
-      await this.searchRequested();
-    }
+      this.searchIndex++
+      await this.searchRequested()
+    },
   },
   components: {
     Search,
     Grid,
-    Pagination
-  }
-}
+    Pagination,
+  },
+};
 </script>
 
 <style scoped>
 .app-container {
   height: 100%;
-  width: 100%;
+
+  margin: 0 10%;
+
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: 1fr;
+  gap: 50px 50px;
 }
 </style>
