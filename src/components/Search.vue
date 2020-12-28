@@ -18,7 +18,9 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  padding: 20px;
+  margin: 2em 0;
+  height: 2em;
+  box-sizing: content-box;
 }
 
 .search-input {

@@ -22,30 +22,54 @@ export default {
 
 <style scoped>
 .main-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* height: 100%; */
+  /* width: 20%; */
+  min-width: 10em;
+
+  margin-right: 2em;
+  margin-bottom: 3em;
+  /* height: 10%; */
+  border: 1px solid rgb(219, 219, 219);
+  padding: 2px;
 }
 
 .img-container {
-  flex: 7;
-  min-height: 0;
-  
+  /* flex: 7; */
+  /* min-height: 0; */
+  height: 10em;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+img {
+  /* flex: 7; */
+  /* min-height: 0; */
+  /* display: block; */
+  /* max-width: 100%; */
+  /* max-height: 100%; */
+}
+
 .size-container {
-  flex: 1;
+  margin-top: 0.5em;
+  text-align: center;
+  /* flex: 1; */
 }
 
 .buttons-container {
-  flex: 2;
+  /* flex: 2; */
+  height: 2em;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 
-  /* margin-top: 10px; */
+  margin-top: 1em;
+}
+
+button:nth-child(2) {
+  margin: 0 1em;
 }
 
 .size {

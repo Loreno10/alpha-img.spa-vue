@@ -1,17 +1,19 @@
 <template>
   <div class="app-container">
-    <Search @search-images="searchRequested" />
-    <Grid :images="images" />
+    <Search @search-images="searchRequested" class="search"/>
+    <Grid :images="images" class="grid" style="overflow: auto;"/>
     <Pagination
       v-if="images.length > 0"
       :disablePrevious="searchIndex === 1"
       @previous-clicked="searchPrevious"
       @next-clicked="searchNext"
+      class="pagination"
     />
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 import Search from "./components/Search.vue";
 import Grid from "./components/Grid.vue";
 import Pagination from "./components/Pagination.vue";
@@ -56,12 +58,21 @@ export default {
 <style scoped>
 .app-container {
   height: 100%;
-
   margin: 0 10%;
 
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  grid-template-columns: 1fr;
-  /* gap: 50px; */
+  /* display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr; */
+
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  flex: 1;
+}
+
+.pagination {
+  margin: 1em 0;
 }
 </style>
