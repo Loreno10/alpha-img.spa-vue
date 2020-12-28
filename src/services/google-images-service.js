@@ -11,6 +11,12 @@ async function getImages(searchTerm, searchIndex = 1) {
 
   const results = await Promise.all([getData(url1), getData(url2)])
   return results.flat().sort((a, b) => (a.width < b.width) ? 1 : -1)
+
+  // const fakeUrl = "http://placekitten.com/300/200"
+  // return [{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},
+  //   {thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},
+  //   {thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},
+  //   {thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl}]
 }
 
 function getGoogleApiIndexes(searchIndex) {

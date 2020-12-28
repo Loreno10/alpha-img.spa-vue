@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <div class="img-container" style="background: yellow;">
+    <div class="img-container">
       <img :src="image.thumbnailUrl" :alt="image.title" />
     </div>
     <div class="size-container">
@@ -29,18 +29,11 @@ export default {
 
 .img-container {
   flex: 7;
+  min-height: 0;
   
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
-}
-
-img {
-  max-width: 100%;
-  max-height: 100%;
-  display: block; 
-  /* max-height: 100%;
-  max-width: 100%; */
+  align-items: center;
 }
 
 .size-container {

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <Search @search-images="searchRequested" />
-    <div><Grid :images="images" /></div>
+    <Grid :images="images" />
     <Pagination
       v-if="images.length > 0"
       :disablePrevious="searchIndex === 1"
@@ -62,6 +62,6 @@ export default {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   grid-template-columns: 1fr;
-  gap: 50px 50px;
+  /* gap: 50px; */
 }
 </style>
