@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .app-container {
   height: 100%;
-  margin: 0 10%;
+  padding: 0 10%;
 
   /* display: grid;
   grid-template-rows: auto auto auto;
