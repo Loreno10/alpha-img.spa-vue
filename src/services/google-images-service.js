@@ -37,6 +37,8 @@ function transformResult(result) {
 
   let images = []
 
+  console.log(result)
+
   result.items.forEach(item => {
     images.push({
       title: item.title,
@@ -47,6 +49,8 @@ function transformResult(result) {
       width: item.image.width
     })
   })
+
+  console.log(images)
 
   return images
 }

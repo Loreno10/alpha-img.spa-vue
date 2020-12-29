@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <input type="text" class="search-input" v-model="searchTerm" />
-    <button @click="$emit('search-images', searchTerm)">Search</button>
+    <input type="text" class="search-input" v-model="searchTerm" @keyup.enter="search"/>
+    <button @click="search">Search</button>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
     return {
       searchTerm: "",
     };
+  },
+  methods: {
+    search() {
+      this.$emit('search-images', this.searchTerm)
+    }
   }
 };
 </script>
