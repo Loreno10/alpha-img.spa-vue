@@ -26,15 +26,14 @@ export default {
       images: [],
       searchTerm: "",
       searchIndex: 1,
-    };
+    }
   },
   methods: {
     async searchRequested(searchTerm) {
       if (searchTerm !== undefined) {
-        this.searchTerm = searchTerm;
+        this.searchTerm = searchTerm
       }
       this.images = await getImages(this.searchTerm, this.searchIndex)
-      console.log(this.images)
     },
     async searchPrevious() {
       if (this.searchIndex > 0) {

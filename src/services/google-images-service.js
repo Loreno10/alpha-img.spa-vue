@@ -37,8 +37,6 @@ function transformResult(result) {
 
   let images = []
 
-  console.log(result)
-
   result.items.forEach(item => {
     images.push({
       title: item.title,

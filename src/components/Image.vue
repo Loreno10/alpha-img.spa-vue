@@ -9,14 +9,22 @@
     <div class="buttons-container">
       <button><font-awesome-icon icon="eye" /></button>
       <button><font-awesome-icon icon="save" /></button>
-      <button><font-awesome-icon icon="clipboard" /></button>
+      <button @click="copyImage"><font-awesome-icon icon="clipboard" /></button>
     </div>
   </div>
 </template>
 
 <script>
+import { copyToClipboard } from '../services/clipboard-service.js';
+
 export default {
   props: ["image"],
+  methods: {
+    async copyImage() {
+      console.log("copyImage")
+      await copyToClipboard(this.image.imageUrl)
+    }
+  }
 };
 </script>
 
