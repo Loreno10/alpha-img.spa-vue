@@ -4,6 +4,8 @@ A simple web app that has one simple goal: provide a quick search of images with
 transparent backgrounds. A good example of usage is for presentations that require
 various images with transparent backgrounds, or product/company logos.
 
+![alpha-img screenshot](docs/img/app_screenshot.png)
+
 ## Features
 
 - search for images using searchbar
