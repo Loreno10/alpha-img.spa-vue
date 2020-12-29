@@ -13,7 +13,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import Search from "./components/Search.vue";
 import Grid from "./components/Grid.vue";
 import Pagination from "./components/Pagination.vue";
@@ -58,10 +57,6 @@ export default {
 .app-container {
   height: 100%;
   padding: 0 10%;
-
-  /* display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr; */
 
   display: flex;
   flex-direction: column;
