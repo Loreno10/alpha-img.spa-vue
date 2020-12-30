@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const apiKey = "AIzaSyACxe7LArB62_zVcyCXZrEt9xEdbx_LbfM"
-const cx = "6fa4d5a5c965291d0"
+const apiKey = process.env.VUE_APP_GOOGLE_API_KEY
+const cx = process.env.VUE_APP_GOOGLE_API_CX
+const baseApiUrl = process.env.VUE_APP_GOOGLE_API_BASE_URL
 
 async function getImages(searchTerm, searchIndex = 1) {
-  const commonUrl = `https://customsearch.googleapis.com/customsearch/v1?cx=${cx}&q=${searchTerm}&key=${apiKey}&filter=1&imgColorType=trans&searchType=image`
+  const commonUrl = `${baseApiUrl}?cx=${cx}&q=${searchTerm}&key=${apiKey}&filter=1&imgColorType=trans&searchType=image`
   const apiIndexes = getGoogleApiIndexes(searchIndex)
   const url1 = `${commonUrl}&start=${apiIndexes[0]}`
   const url2 = `${commonUrl}&start=${apiIndexes[1]}`
