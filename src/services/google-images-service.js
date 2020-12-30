@@ -5,13 +5,10 @@ const cx = process.env.VUE_APP_GOOGLE_API_CX
 const baseApiUrl = process.env.VUE_APP_GOOGLE_API_BASE_URL
 
 async function getImages(searchTerm, searchIndex = 1) {
-  const commonUrl = `${baseApiUrl}?cx=${cx}&q=${searchTerm}&key=${apiKey}&filter=1&imgColorType=trans&searchType=image`
-  const apiIndexes = getGoogleApiIndexes(searchIndex)
-  const url1 = `${commonUrl}&start=${apiIndexes[0]}`
-  const url2 = `${commonUrl}&start=${apiIndexes[1]}`
+  const urls = getApiUrls(searchIndex, searchTerm)
 
-  const results = await Promise.all([getData(url1), getData(url2)])
-  return results.flat().sort((a, b) => (a.width < b.width) ? 1 : -1)
+  const results = (await Promise.all([getData(urls[0]), getData(urls[1])])).flat()
+  return removeNonPngImages(results).sort((a, b) => (a.width < b.width) ? 1 : -1)
 
   // For testing purposes
   
@@ -22,8 +19,20 @@ async function getImages(searchTerm, searchIndex = 1) {
   //   {thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl},{thumbnailUrl: fakeUrl}]
 }
 
-function getGoogleApiIndexes(searchIndex) {
-  return [(searchIndex - 1) * 20 + 1, (searchIndex - 1) * 20 + 11]
+function getApiUrls(searchIndex, searchTerm) {
+  const commonUrl = `${baseApiUrl}?cx=${cx}&q=${searchTerm}&key=${apiKey}&filter=1&imgColorType=trans&searchType=image`
+
+  const index1 = (searchIndex - 1) * 20 + 1
+  const index2 = (searchIndex - 1) * 20 + 11
+
+  const url1 = `${commonUrl}&start=${index1}`
+  const url2 = `${commonUrl}&start=${index2}`
+
+  return [url1, url2]
+}
+
+function removeNonPngImages(images) {
+  return images.filter(n => n.imageUrl.endsWith(".png") || n.imageUrl.endsWith(".PNG"))
 }
 
 async function getData(url) {
