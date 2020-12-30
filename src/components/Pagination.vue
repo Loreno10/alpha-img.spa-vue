@@ -1,10 +1,10 @@
 <template>
   <div class="pagination-container">
     <button :disabled="disablePrevious" @click="$emit('previous-clicked')">
-      <font-awesome-icon icon="arrow-alt-circle-left" />
+      <font-awesome-icon icon="arrow-circle-left" size="4x"/>
     </button>
     <button @click="$emit('next-clicked')">
-      <font-awesome-icon icon="arrow-alt-circle-right" />
+      <font-awesome-icon icon="arrow-circle-right" size="4x"/>
     </button>
   </div>
 </template>
@@ -19,5 +19,10 @@ export default {
 .pagination-container {
   display: flex;
   justify-content: center;
+}
+
+button {
+  margin: 0 2em;
+  padding: 0.25em 2em;
 }
 </style>
