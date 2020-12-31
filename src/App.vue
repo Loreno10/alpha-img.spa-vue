@@ -16,7 +16,7 @@
 import Search from "./components/Search.vue";
 import Grid from "./components/Grid.vue";
 import Pagination from "./components/Pagination.vue";
-import { getImages } from "./services/google-images-service.js";
+import { getImages } from "./services/proxied-images-service.js";
 
 export default {
   name: "App",
