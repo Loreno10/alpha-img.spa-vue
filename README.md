@@ -8,14 +8,17 @@ require various images with transparent backgrounds, or product/company logos.
 
 The project consists of two applicaitons:
 
-- SPA built with [Vue.js 3](https://vuejs.org/) (**THIS REPO**)
-- Web API built with [.NET 5](https://dotnet.microsoft.com/) (**TBD**)
+- [SPA built with Vue.js 3](**THIS REPO**)
+- [Web API built with .NET
+  5](https://github.com/Loreno10/alpha-img.webapi-dotnet)
 
 The SPA communicates with the Web API to get the images. The only reason for
 introducting the Web API (and not calling Google API directly) was to protect
 the Google API Key. Initially, the WebAPI was not a part of the project, and the
 SPA was communicating directly with the Google APIs (the service for that is in
 the `src/services/direct-google-images-service.js` - it is not currently used).
+
+The app is deployed to Heroku at https://alpha-imgs-spa.herokuapp.com/.
 
 ## Features
 
@@ -26,9 +29,9 @@ the `src/services/direct-google-images-service.js` - it is not currently used).
 - open the image in its full size in another tab (again, with a click of a
   button)
 
-The copy-to-clipboard functionality requires the SPA to download the images. To enable
-that and get past CORS issues, the SPA needs some proxy service that will add
-the rquired CORS headers to the GET request for each image. Currently, a
+The copy-to-clipboard functionality requires the SPA to download the images. To
+enable that and get past CORS issues, the SPA needs some proxy service that will
+add the rquired CORS headers to the GET request for each image. Currently, a
 publicly available endpoint https://cors-anywhere.herokuapp.com/ is being used.
 
 ## Project setup
